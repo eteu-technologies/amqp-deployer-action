@@ -1,0 +1,21 @@
+# action.yml
+name: 'eteu-amqp-deployer'
+inputs:
+  amqp-url:
+    description: 'Broker URL to connect to'
+    required: true
+  amqp-queue:
+    description: 'Queue to post the message to'
+    required: true
+  tag:
+    description: 'Deployment tag'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ETEU_AMQP_DEPLOYER_AMQP_URL: '${{ inputs.amqp-url }}'
+    ETEU_AMQP_DEPLOYER_AMQP_QUEUE: '${{ inputs.amqp-queue }}'
+  args:
+    - '--tag'
+    - '${{ inputs.tag }}'
