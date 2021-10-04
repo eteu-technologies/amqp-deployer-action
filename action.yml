@@ -10,6 +10,9 @@ inputs:
   tag:
     description: 'Deployment tag'
     required: true
+  git-commit:
+    description: "Git commit data"
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -19,3 +22,5 @@ runs:
   args:
     - '--tag'
     - '${{ inputs.tag }}'
+    - '--data'
+    - 'git-commit=${{ inputs.git-commit }}'
